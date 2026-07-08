@@ -1,0 +1,39 @@
+name: doordash-copycat-fd1
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  doordash_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build docker image
+        run: |
+          docker build . -t fd-doordash
+      - name: run the container
+        run: |
+          docker run fd-doordash
+      - name: test GET/
+        run: |
+          echo "Test GET/"
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/)
+          echo "http_code=$(echo "$response" | tail -n1)"
+      - name: test POST/calculate fee
+        run: |
+          echo "Test POST/calculate-fee"
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/calculate-fee)
+          echo "http_code=$(echo "$response" | tail -n1)"
+      - name: test GET/estimate-time
+        run: |
+          echo "Test GET/estimate-time"
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/estimate-time)
+          echo "http_code=$(echo "$response" | tail -n1)"
+      - name: test GET/estimate-time
+        run: |
+          echo "Test GET/status"
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/status)
+          echo "http_code=$(echo "$response" | tail -n1)"
+      - name: arrêter le container
+        run: |
+          docker stop fd-doordash
