@@ -45,9 +45,11 @@ jobs:
       - name: test GET/estimate-time
         run: |
           curl -sSf http://localhost:8080/estimate-time/5 || exit 1
-      - name: test GET/estimate-time
+      - name: test GET/status
         run: |
           curl -sSf http://localhost:8080/status/ || exit 1
+      - name: exécuter les tests
+        run: pytest tests/ -v
       - name: arrêter le container
         run: |
           docker stop doordash-fee || true
