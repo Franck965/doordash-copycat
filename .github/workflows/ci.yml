@@ -15,7 +15,7 @@ jobs:
           docker build . -t fd-doordash
       - name: run the container
         run: |
-          docker run fd-doordash
+          docker run fd-doordash -p 8080:8080
       - name: test GET/
         run: |
           echo "Test GET/"
