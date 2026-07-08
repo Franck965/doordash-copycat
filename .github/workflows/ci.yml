@@ -48,6 +48,10 @@ jobs:
       - name: test GET/status
         run: |
           curl -sSf http://localhost:8080/status/ || exit 1
+      - name: Install test dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pytest httpx fastapi
       - name: exécuter les tests
         run: pytest tests/ -v
       - name: arrêter le container
