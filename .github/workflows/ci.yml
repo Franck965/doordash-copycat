@@ -19,22 +19,22 @@ jobs:
       - name: test GET/
         run: |
           echo "Test GET/"
-          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/)
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8080/)
           echo "http_code=$(echo "$response" | tail -n1)"
       - name: test POST/calculate fee
         run: |
           echo "Test POST/calculate-fee"
-          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/calculate-fee)
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8080/calculate-fee)
           echo "http_code=$(echo "$response" | tail -n1)"
       - name: test GET/estimate-time
         run: |
           echo "Test GET/estimate-time"
-          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/estimate-time)
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8080/estimate-time)
           echo "http_code=$(echo "$response" | tail -n1)"
       - name: test GET/estimate-time
         run: |
           echo "Test GET/status"
-          response=$(curl -sf -w "\n%{http_code}" http://localhost:8090/status)
+          response=$(curl -sf -w "\n%{http_code}" http://localhost:8080/status)
           echo "http_code=$(echo "$response" | tail -n1)"
       - name: arrêter le container
         run: |
