@@ -50,4 +50,6 @@ jobs:
           curl -sSf http://localhost:8080/status/ || exit 1
       - name: arrêter le container
         run: |
-          docker stop fd-doordash
+          docker stop doordash-fee || true
+          docker rm doordash-fee || true
+          docker ps -a
